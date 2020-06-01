@@ -1,0 +1,99 @@
+<!-- START -->
+<!-- html header, styling for Tutorials pages -->
+<!-- note: requires stylesheet.css to be in the parent directory; see <head> section -->
+<!-- copy the contents below into the appropriate sections of your html page -->
+
+<!-- document setup -->
+
+<html>
+
+<!-- head area -->
+<head>
+  <!-- convert Latex (e.g., $-\sqrt{2}/2$ to an img with the --mathjax argument in pypandoc -->
+  <!-- see https://tex.stackexchange.com/questions/23804/how-to-incorporate-tex-into-a-website -->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <!-- <meta charset="utf-8" /> --> <!-- old version -->
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- set the viewport https://www.w3schools.com/css/css_rwd_viewport.asp -->
+  <title>
+    Under the Hood - HNN
+  </title>
+  <!-- import CSS style sheet from Github directory -->
+  <link rel = "stylesheet" type = "text/css" href = "../html-styling/stylesheet.css" />
+</head>
+
+<!-- body styling -->
+<body>
+
+<!-- add Navbar -->
+<div class="navbar">
+  <div id="wrapper">
+    <img src="https://hnn.brown.edu/wp-content/uploads/2018/05/mainlogo3.png" alt="HNN" scale="0">
+    <a href="https://hnn.brown.edu/index.php/under-the-hood/">Under the Hood</a>
+    <a href="https://hnn.brown.edu">Home</a>
+  </div>
+</div>
+
+<!-- add Tutorials header -->
+<div class="headercontainer main">
+<div class="headertext">  </div>
+</div>
+
+<!-- set width for body to 900px -->
+<div id="wrapper">
+
+<!-- add button to scroll to top -->
+<button onclick="topFunction()" id="myBtn" title="Scroll to top">Top</button>
+
+<!-- script for scroll button function -->
+<script>
+//Get the button:
+mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+<!-- return to tutorials page -->
+<div style="text-align:center; vertical-align: middle; padding:10px;">
+<p></p>
+
+<tbody>
+<tr style="border: none;">
+<td style="border: none; width: 33.3%; padding: 1px;">
+</td>
+
+<td style="border: none; width: 33.3%; padding: 1px;">
+<!--<a style="text-decoration: none" href="https://hnn.brown.edu/index.php/tutorials/">-->
+<p><img src="https://hnn.brown.edu/wp-content/uploads/2019/06/EEG_Brain.png" width="60" height="auto"></p>
+<p style=" font-family: sans-serif; font-size: x-large; font-weight:700; color: #1156a3; border:0px; margin:0px;">Under the Hood</p>
+<!--</a>-->
+</td>
+
+<td style="border: none; width: 33.3%; padding: 1px;">
+</td>
+</tr>
+</tbody>
+</div>
+
+<!-- your contents go here -->
+
+<!-- </body> -->
+<!-- </html> -->
+<!-- END -->
+<h2 id="calculation-of-primary-electrical-currents">Calculation of Primary Electrical Currents</h2>
+<p>Axial current flow between any two neighboring model compartments i,j is defined as iaxial = (vi - vj) / raxial , where vi , vj , and raxial are the voltages in compartment i, j, and the resistance between the compartments, respectively. In order to convert this axial current into a dipole signal, we apply a length scaling where the axial current is scaled by the inter-compartment distance along the vertical axis. The length scaling means that for the longer apical dendrites of layer 5 pyramidal neurons, the contribution will be larger than from the shorter layer 2/3 pyramidal neuron apical dendrites. Note that the orientation of the dendrites relative to the vertical axis also influences the contribution to the dipole signal. For example, the horizontally-oriented oblique dendrites which do not have any vertical length component, do not contribute to the dipole signal, whereas for basal dendrites oriented at 45 degrees from the vertical axis, the scaling is <span class="math inline">\(-\sqrt{2}/2\)</span> (note the negative sign is because these dendrites are pointing downward). The contribution from all neighboring compartments within a neuron is integrated and then added to a value across the set of all pyramidal neurons. As a result of the multiplication between axial current and length, the model dipole output signal has the same units of measure as the experimental data (in units of nano-Ampere-meters) and we are then able to directly compare the two signals, as well as precisely tune model parameters to match characteristics of recorded signals (Okada, Wu, and Kyuhou 1997).</p>
+<h2 id="tutorial-references">Tutorial References</h2>
+<p>Okada, Y. C., J. Wu, and S. Kyuhou. 1997. “Genesis of MEG Signals in a Mammalian CNS Structure.” Electroencephalography and Clinical Neurophysiology 103 (4): 474–85.</p>
+<p><br><br></p>
