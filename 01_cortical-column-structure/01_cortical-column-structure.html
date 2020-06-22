@@ -1,0 +1,110 @@
+<!-- START -->
+<!-- html header, styling for Tutorials pages -->
+<!-- note: requires stylesheet.css to be in the parent directory; see <head> section -->
+<!-- copy the contents below into the appropriate sections of your html page -->
+
+<!-- document setup -->
+
+<html>
+
+<!-- head area -->
+<head>
+  <!-- convert Latex (e.g., $-\sqrt{2}/2$ to an img with the --mathjax argument in pypandoc -->
+  <!-- see https://tex.stackexchange.com/questions/23804/how-to-incorporate-tex-into-a-website -->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <!-- <meta charset="utf-8" /> --> <!-- old version -->
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- set the viewport https://www.w3schools.com/css/css_rwd_viewport.asp -->
+  <title>
+    Under the Hood - HNN
+  </title>
+  <!-- import CSS style sheet from Github directory -->
+  <link rel = "stylesheet" type = "text/css" href = "../html-styling/stylesheet.css" />
+</head>
+
+<!-- body styling -->
+<body>
+
+<!-- add Navbar -->
+<div class="navbar">
+  <div id="wrapper">
+    <img src="https://hnn.brown.edu/wp-content/uploads/2018/05/mainlogo3.png" alt="HNN" scale="0">
+    <a href="https://hnn.brown.edu/index.php/under-the-hood/">Under the Hood</a>
+    <a href="https://hnn.brown.edu">Home</a>
+  </div>
+</div>
+
+<!-- add header -->
+<div class="headercontainer main">
+<div class="headertext"></div>
+</div>
+
+<!-- set width for body to 900px -->
+<div id="wrapper">
+
+<!-- add button to scroll to top -->
+<button onclick="topFunction()" id="myBtn" title="Scroll to top">Top</button>
+
+<!-- script for scroll button function -->
+<script>
+//Get the button:
+mybutton = document.getElementById("myBtn");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+<!-- return to tutorials page -->
+<br><br>
+<div style="text-align:center; vertical-align: middle; padding:10px;">
+  <tbody>
+  <tr style="border: none;">
+  <td style="border: none; width: 33.3%; padding: 1px;">
+  </td>
+
+  <td style="border: none; width: 33.3%; padding: 1px;">
+  <img src="https://hnn.brown.edu/wp-content/uploads/2019/06/EEG_Brain.png" width="60" height="auto">
+  </td>
+
+  <td style="border: none; width: 33.3%; padding: 1px;">
+  </td>
+  </tr>
+  </tbody>
+</div>
+
+<!-- your contents go here -->
+
+<!-- </body> -->
+<!-- </html> -->
+<!-- END -->
+<h2 id="overview-of-cortical-column-structure">Overview of Cortical Column Structure</h2>
+<p>Neocortical circuits are organized with remarkably similar features across areas and species. These features include a common laminar structure with generalizable cell classes as well as similar local connectivity and input and output connectivity patterns. We have harnessed this generalization into HNN’s foundational neural model that is provided as a template circuit to work with.</p>
+<div class="stylefig">
+<p><a href="https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/netpyne-schematic-tilted-colored"> <img class="imgcenter100" src="https://raw.githubusercontent.com/jonescompneurolab/hnn-under_the_hood/master/html-styling/images/netpyne-schematic-tilted-colored.png" alt="netpyne-schematic-tilted-colored" style="max-width:300px" /> </a></p>
+</div>
+<p>Most importantly, our model contains multi-compartment pyramidal neurons (PN) in supragranular and infragranular layers (layers 2/3 and 5, respectively), whose apical dendrites are spatially aligned and span the cortical layers as shown in the 3D visualization above. The primary electrical current signals simulated in HNN are derived from the intracellular current flow in the PN dendrites (see Calculation of Primary Electrical Currents tab for details). In the figure above, the green neurons represent the layer 2/3 PN and the blue the the layer 5 PN. Note that in both layers, the PN have two basal, one oblique, and one apical dendrite branch, and the layer 2/3 PN have shorter apical dendrites compared to the layer 5 PN.</p>
+<p>The PN are synaptically coupled to each other and to a subset of inhibitory neurons in each layer in a 3/1 PN-to-interneuron ratio. The inhibitory neurons are simulated with single compartments and represent fast spiking basket cells, and are shown in red in the figure above. Details of the cells and synaptic connectivity structure are given under their respective tabs in the “Under The Hood” page.</p>
+<p>There are several ways to activate the local cortical column with layer specific synaptic (thalamo-cortical, and/or cortical-cortical) and tonic drive, as detailed in the Exogenous Driving Inputs and Tonic/Noisy Inputs tabs (see also tutorials).</p>
+<p>The list below provides an overview of key features of the template model provided, further details are outlined in other tabs in the “Under the Hood” page.</p>
+<ol type="1">
+<li>Supragranular layer (layer 2/3) with multi-compartment pyramidal and single compartment inhibitory neurons</li>
+<li>Infragranular layer (layer 5) with multi-compartment pyramidal and single compartment inhibitory neurons</li>
+<li>A scalable number of neurons per layer with 3/1 PN-to-interneuron ratio (default network contains 100 PN per layer)</li>
+<li>Gabaergic (GABAA/GABAB) &amp; Glutamatergic (AMPA/NMDA) synaptic connectivity between local cortical column cells</li>
+<li>Membrane voltages simulated with Hodgkin-Huxley type dynamics, with active ionic currents in somatic and dendritic compartments</li>
+<li>Layer specific exogenous driving inputs (synaptic and tonic/noisy)</li>
+<li>Primary current dipole calculated as net intracellular current flow in PN dendrites (Units: nano-Ampere-meters (nAm))</li>
+</ol>
+<p>Of note, the granular layer is not explicitly included in the template circuit. This initial design choice was based on the fact that macroscale current dipoles are dominated by PN activity in supragranular, and intragranular layers. Thalamic input to granular layers is presumed to propagate directly to basal and oblique dendrites of PN in layer 2/3 and 5 (see Exogenous Driving Inputs tab for details). As the use of our open-source software grows, we hope that other cells and network configurations will be made available as template models to work with.</p>
+<p><br><br></p>
